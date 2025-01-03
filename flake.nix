@@ -6,7 +6,7 @@
       nixpi1 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./machines/pi1/configuration.nix
+          ./hosts/pi1/configuration.nix
         ];
       };
 
