@@ -12,20 +12,18 @@
       settings = {
         upstreams.groups.default = [
           "tcp-tls:dns3.digitalcourage.de:853"
-          "tcp-tls:ns.digitale-gesellschaft.ch:853"
+          "tcp-tls:dns.digitale-gesellschaft.ch:853"
           "tcp-tls:jabber-germany.de:853"
           "tcp-tls:ns1.opennameserver.org:853"
           "tcp-tls:ns2.opennameserver.org:853"
           "tcp-tls:ns3.opennameserver.org:853"
         ];
         bootstrapDns = {
-          upstream = "tcp-tls:dns3.digitalcourage.de:853";
-          ips = [ "5.9.164.112" ];
+          upstream = "8.8.8.8";
         };
         conditional = {
           mapping = {
             "fritz.box" = "192.168.178.1";
-            "." = "168.168.178.1";
           };
         };
         log.level = "warn";
