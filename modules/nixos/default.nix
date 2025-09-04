@@ -40,7 +40,6 @@
 
   users.users.jonasw = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
   };
 

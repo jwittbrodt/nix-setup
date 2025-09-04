@@ -13,7 +13,6 @@
   boot.loader.generic-extlinux-compatible.enable = true;
 
   networking.hostName = "nixpi1";
-  security.sudo.wheelNeedsPassword = false;
   system.autoUpgrade = {
     enable = true;
     allowReboot = true;
