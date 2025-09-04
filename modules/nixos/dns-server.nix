@@ -39,6 +39,7 @@
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt
+              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/spam-tlds-onlydomains.txt
             ];
             undesirable = [
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
