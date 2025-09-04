@@ -33,13 +33,18 @@
         blocking = {
           denylists = {
             ads = [
-              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
+              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt
             ];
             threats = [
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
+              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt
+              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt
+            ];
+            undesirable = [
+              https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
             ];
           };
-          clientGroupsBlock.default = [ "ads" "threats" ];
+          clientGroupsBlock.default = [ "ads" "threats" "undesirable"];
         };
       };
     };
