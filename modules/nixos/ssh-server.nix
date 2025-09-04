@@ -1,10 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.my.sshServer.enable = lib.mkOption {
-    default = false;
-    type = lib.types.bool;
-  };
+  options.my.sshServer.enable = lib.mkEnableOption "ssh-server with authorized key login";
 
   config = lib.mkIf config.my.sshServer.enable {
     users.users.jonasw.openssh.authorizedKeys.keys = [

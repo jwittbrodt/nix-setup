@@ -3,7 +3,7 @@
 {
   imports = [
     (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
-    ../modules/nixos/default.nix
+    ../modules/nixos
   ];
 
   nixpkgs.hostPlatform.system = "aarch64-linux";
