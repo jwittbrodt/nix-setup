@@ -1,4 +1,4 @@
-{ config, pkgs, nix-colors, ... }:
+{ config, pkgs, lib, nix-colors, ... }:
 
 {
   programs.alacritty = {
@@ -31,6 +31,31 @@
         };
         draw_bold_text_with_bright_colors = true;
       };
+      font = {
+        size = 13;
+        normal.family = lib.head config.fonts.fontconfig.defaultFonts.monospace;
+      };
+      keyboard.bindings = [
+        {
+          action = "Copy";
+          key = "C";
+          mods = "Control|Alt";
+        }
+        {
+          action = "Paste";
+          key = "V";
+          mods = "Control|Alt";
+        }
+      ];
+      window = {
+        decorations = "none";
+        opacity = 0.9;
+        dimensions = {
+          columns = 0;
+          lines = 0;
+        };
+      };
+      general.live_config_reload = true;
     };
   };
 }
