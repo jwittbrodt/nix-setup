@@ -3,6 +3,7 @@
 {
   programs.alacritty = {
     enable = true;
+    package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
       colors = {
         primary = {

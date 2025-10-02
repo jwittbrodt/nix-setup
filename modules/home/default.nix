@@ -12,6 +12,11 @@
   home.username = "jonasw";
   home.homeDirectory = "/home/jonasw";
 
+  nixGL = {
+    packages = nixgl.packages;
+    defaultWrapper = "mesa";
+  };
+
   programs.home-manager.enable = true;
 
   home.stateVersion = "25.05"; # Please read the comment before changing.
