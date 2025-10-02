@@ -42,7 +42,7 @@
               https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
             ];
           };
-          clientGroupsBlock.default = [ "ads" "threats" "undesirable"];
+          clientGroupsBlock.default = [ "ads" "threats" "undesirable" ];
         };
       };
     };

@@ -34,12 +34,14 @@
     homeConfigurations."jonasw@JonasThinkpad" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ ./modules/home ];
-      extraSpecialArgs = { 
+      extraSpecialArgs = {
         inherit nix-colors;
         inherit nixgl;
       };
     };
 
     images.rpi4 = self.nixosConfigurations.aarch64Image.config.system.build.sdImage;
+
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
   };
 }
