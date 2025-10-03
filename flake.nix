@@ -13,13 +13,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-colors = {
-      url = "github:misterio77/nix-colors";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+    base16.url = "github:SenchoPens/base16.nix";
+
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, nix-colors }: {
+  outputs = { self, nixpkgs, home-manager, nixgl, base16, tt-schemes }: {
     nixosConfigurations = {
       nixpi1 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
@@ -35,8 +37,9 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ ./modules/home ];
       extraSpecialArgs = {
-        inherit nix-colors;
         inherit nixgl;
+        inherit base16;
+        inherit tt-schemes;
       };
     };
 

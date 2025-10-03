@@ -1,13 +1,13 @@
-{ config, pkgs, nix-colors, ... }:
+{ config, pkgs, nixgl, base16, tt-schemes, ... }:
 
 {
   imports = [
     ./alacritty.nix
     ./fonts.nix
-    nix-colors.homeManagerModules.default
+    base16.homeManagerModule
   ];
 
-  colorScheme = nix-colors.colorSchemes.eighties;
+  scheme = "${tt-schemes}/base16/eighties.yaml";
 
   home.username = "jonasw";
   home.homeDirectory = "/home/jonasw";
