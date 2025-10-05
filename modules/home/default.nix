@@ -4,6 +4,7 @@
   imports = [
     ./alacritty.nix
     ./fonts.nix
+    ./sway.nix
     base16.homeManagerModule
   ];
 
