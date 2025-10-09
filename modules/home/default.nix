@@ -4,6 +4,8 @@
   imports = [
     ./alacritty.nix
     ./fonts.nix
+    ./git.nix
+    ./ssh-client.nix
     ./window-manager
     base16.homeManagerModule
   ];
