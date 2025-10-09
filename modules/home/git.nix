@@ -5,7 +5,7 @@
     enable = true;
     userName = "Jonas Wittbrodt";
     userEmail = "36197762+jwittbrodt@users.noreply.github.com";
-
+    lfs.enable = true;
     extraConfig = {
       core.editor = "nano";
       column.ui = "auto";
