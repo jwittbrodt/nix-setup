@@ -15,6 +15,7 @@
     ./git.nix
     ./ssh-client.nix
     ./window-manager
+    ./zsh.nix
     base16.homeManagerModule
   ];
 
