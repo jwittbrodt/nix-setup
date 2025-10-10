@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options.my.sshServer.enable = lib.mkEnableOption "ssh-server with authorized key login";

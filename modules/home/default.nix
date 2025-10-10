@@ -1,8 +1,16 @@
-{ config, pkgs, nixgl, base16, tt-schemes, ... }:
+{
+  config,
+  pkgs,
+  nixgl,
+  base16,
+  tt-schemes,
+  ...
+}:
 
 {
   imports = [
     ./alacritty.nix
+    ./dev
     ./fonts.nix
     ./git.nix
     ./ssh-client.nix

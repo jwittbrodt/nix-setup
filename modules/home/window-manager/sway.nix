@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   wayland.windowManager.sway = {
@@ -33,9 +38,15 @@
           indicator = background;
           childBorder = background;
         };
-        unfocused = focused // { text = focused.border; };
-        focusedInactive = focused // { text = background; };
-        placeholder = focused // { text = base05; };
+        unfocused = focused // {
+          text = focused.border;
+        };
+        focusedInactive = focused // {
+          text = background;
+        };
+        placeholder = focused // {
+          text = base05;
+        };
         urgent = {
           border = focused.border;
           background = red;
@@ -111,16 +122,14 @@
         }
       ];
 
-      keybindings =
-        lib.mkOptionDefault {
-          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-          "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
-        };
-
+      keybindings = lib.mkOptionDefault {
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+      };
 
       # TODO: idle
     };

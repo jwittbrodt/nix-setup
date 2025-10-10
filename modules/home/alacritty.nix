@@ -1,24 +1,44 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.alacritty = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
-      colors = with config.scheme.withHashtag; let
-        default = {
-          black = base00;
-          white = base07;
-          inherit red green yellow blue cyan magenta;
+      colors =
+        with config.scheme.withHashtag;
+        let
+          default = {
+            black = base00;
+            white = base07;
+            inherit
+              red
+              green
+              yellow
+              blue
+              cyan
+              magenta
+              ;
+          };
+        in
+        {
+          primary = {
+            background = base00;
+            foreground = base05;
+          };
+          cursor = {
+            text = base02;
+            cursor = base07;
+          };
+          normal = default;
+          bright = default;
+          dim = default;
         };
-      in
-      {
-        primary = { background = base00; foreground = base05; };
-        cursor = { text = base02; cursor = base07; };
-        normal = default;
-        bright = default;
-        dim = default;
-      };
       font = {
         size = 13;
         normal.family = lib.head config.fonts.fontconfig.defaultFonts.monospace;
