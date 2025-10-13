@@ -9,7 +9,7 @@
     oh-my-zsh = {
       enable = true;
       theme = "agnoster";
-      plugins = ["git"];
+      plugins = [ "git" ];
       extraConfig = ''
         HYPHEN_INSENSITIVE="true"
         HIST_STAMPS="dd.mm.yyyy"
@@ -29,4 +29,9 @@
       export EDITOR='nano'
     '';
   };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  home.packages = [ pkgs.nix-direnv ];
 }
