@@ -26,6 +26,7 @@
         conditional = {
           mapping = {
             "fritz.box" = "192.168.178.1";
+            "home.lab" = "192.168.178.250";
           };
         };
         log.level = "warn";
