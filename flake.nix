@@ -19,6 +19,11 @@
       url = "github:tinted-theming/schemes";
       flake = false;
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,6 +34,7 @@
       nixgl,
       base16,
       tt-schemes,
+      nix-vscode-extensions,
     }:
     {
       nixosConfigurations = {
@@ -44,7 +50,12 @@
 
       homeConfigurations."jonasw@JonasThinkpad" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./modules/home ];
+        modules = [
+          ./modules/home
+          {
+            nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+          }
+        ];
         extraSpecialArgs = {
           inherit nixgl;
           inherit base16;
@@ -52,7 +63,10 @@
         };
       };
 
-      images.rpi4 = self.nixosConfigurations.aarch64Image.config.system.build.sdImage;
+      checks = {
+        x86_64-linux."home-manager-jonasw@JonasThinkpad" =
+          self.homeConfigurations."jonasw@JonasThinkpad".activationPackage;
+      };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
