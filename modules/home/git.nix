@@ -1,12 +1,14 @@
-{ pkgs, config, ... }:
+{ ... }:
 
 {
   programs.git = {
     enable = true;
-    userName = "Jonas Wittbrodt";
-    userEmail = "36197762+jwittbrodt@users.noreply.github.com";
     lfs.enable = true;
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Jonas Wittbrodt";
+        email = "36197762+jwittbrodt@users.noreply.github.com";
+      };
       core.editor = "nano";
       column.ui = "auto";
       branch.sort = "-committerdate";

@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   nixgl,
   base16,
   tt-schemes,
@@ -24,9 +22,12 @@
   home.username = "jonasw";
   home.homeDirectory = "/home/jonasw";
 
-  nixGL = {
-    packages = nixgl.packages;
-    defaultWrapper = "mesa";
+  targets.genericLinux = {
+    enable = true;
+    nixGL = {
+      packages = nixgl.packages;
+      defaultWrapper = "mesa";
+    };
   };
 
   programs.home-manager.enable = true;
