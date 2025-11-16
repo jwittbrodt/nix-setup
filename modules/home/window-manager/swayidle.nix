@@ -6,7 +6,7 @@
     events = [
       {
         event = "before-sleep";
-        command = "pactl set-sink-mute @DEFAULT_SINK@ 1; pactl set-source-mute @DEFAULT_SOURCE@ 1; /usr/bin/swaylock";
+        command = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ 1; ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 1; /usr/bin/swaylock";
       }
       {
         event = "after-resume";
@@ -16,7 +16,7 @@
     timeouts = [
       {
         timeout = 120;
-        command = "${pkgs.sway} 'output * dpms off'";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
       }
       {
         timeout = 300;
@@ -24,4 +24,12 @@
       }
     ];
   };
+  wayland.windowManager.sway.config.window.commands = [
+    {
+      command = "inhibit_idle fullscreen";
+      criteria = {
+        app_id = "firefox";
+      };
+    }
+  ];
 }
