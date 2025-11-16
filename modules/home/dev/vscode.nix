@@ -46,7 +46,10 @@
             menuBarVisibility = "toggle";
             zoomLevel = 2;
           };
-          nix.enableLanguageServer = true;
+          nix = {
+            enableLanguageServer = true;
+            serverPath = "${pkgs.nil}/bin/nil";
+          };
         };
     };
   };
