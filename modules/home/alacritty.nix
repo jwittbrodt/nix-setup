@@ -8,7 +8,7 @@
 {
   programs.alacritty = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.alacritty;
+    package = pkgs.alacritty;
     settings = {
       colors =
         with config.scheme.withHashtag;

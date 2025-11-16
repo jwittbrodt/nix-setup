@@ -1,5 +1,4 @@
 {
-  nixgl,
   base16,
   tt-schemes,
   ...
@@ -24,10 +23,8 @@
 
   targets.genericLinux = {
     enable = true;
-    nixGL = {
-      packages = nixgl.packages;
-      defaultWrapper = "mesa";
-    };
+    gpu.enable = true;
+    nixGL.packages = null;
   };
 
   programs.home-manager.enable = true;

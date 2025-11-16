@@ -8,7 +8,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.sway;
+    package = pkgs.sway;
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";

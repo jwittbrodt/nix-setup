@@ -8,11 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixgl = {
-      url = "github:nix-community/nixgl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     base16.url = "github:SenchoPens/base16.nix";
 
     tt-schemes = {
@@ -31,7 +26,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixgl,
       base16,
       tt-schemes,
       nix-vscode-extensions,
@@ -57,7 +51,6 @@
           }
         ];
         extraSpecialArgs = {
-          inherit nixgl;
           inherit base16;
           inherit tt-schemes;
         };
