@@ -82,8 +82,6 @@
         size = 12.0;
       };
 
-      menu = "${pkgs.bemenu}/bin/bemenu-run ${config.home.sessionVariables.BEMENU_OPTS}";
-
       bars = [
         {
           fonts = fonts;

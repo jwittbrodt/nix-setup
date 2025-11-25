@@ -25,4 +25,7 @@
       ab = base00;
     };
   };
+  home.packages = with pkgs; [ j4-dmenu-desktop ];
+  wayland.windowManager.sway.config.menu =
+    "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --dmenu=\"${pkgs.bemenu}/bin/bemenu ${config.home.sessionVariables.BEMENU_OPTS}\"";
 }
