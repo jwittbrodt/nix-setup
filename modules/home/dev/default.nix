@@ -1,8 +1,9 @@
-{ pkgs, config, ... }:
+{ ... }:
 
 {
   imports = [
     ./nix.nix
+    ./terraform.nix
     ./vscode.nix
   ];
 }
