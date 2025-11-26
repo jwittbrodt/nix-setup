@@ -27,6 +27,7 @@
         extensions = with pkgs.nix-vscode-extensions.open-vsx; [
           eamodio.gitlens
           naumovs.color-highlight
+          redhat.vscode-yaml
           streetsidesoftware.code-spell-checker
           tintedtheming.base16-tinted-themes
         ];
@@ -53,6 +54,7 @@
         plusFeatures.enabled = false;
         launchpad.indicator.enabled = false;
       };
+      redhat.telemetry.enabled = false;
     };
   };
 }
