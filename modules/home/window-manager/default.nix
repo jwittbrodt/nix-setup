@@ -4,9 +4,8 @@
   imports = [
     ./bemenu.nix
     ./i3status-rust.nix
+    ./screenlock.nix
     ./sway.nix
-    ./swayidle.nix
-    ./swaylock.nix
   ];
 
   home.packages = with pkgs; [
