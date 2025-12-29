@@ -4,7 +4,7 @@
   ...
 }:
 
-{
+rec {
   imports = [
     ./alacritty.nix
     ./dev
@@ -26,6 +26,8 @@
     gpu.enable = true;
     nixGL.packages = null;
   };
+
+  sops.age.keyFile = "${home.homeDirectory}/.age/key.txt";
 
   programs.home-manager.enable = true;
 

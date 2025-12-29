@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.git = {
@@ -7,7 +7,6 @@
     settings = {
       user = {
         name = "Jonas Wittbrodt";
-        email = "36197762+jwittbrodt@users.noreply.github.com";
       };
       core.editor = "nano";
       column.ui = "auto";
@@ -40,5 +39,25 @@
       merge.conflictstyle = "zdiff3";
       pull.rebase = true;
     };
+    includes = [
+      {
+        path = config.sops.templates."personal-github.gitconfig".path;
+        condition = "hasconfig:remote.*.url:git@github.com:*/**";
+      }
+      {
+        path = config.sops.templates."personal-gitlab.gitconfig".path;
+        condition = "hasconfig:remote.*.url:git@gitlab.com:*/**";
+      }
+    ];
   };
+  sops.secrets."emails/github" = { };
+  sops.secrets."emails/gitlab" = { };
+  sops.templates."personal-github.gitconfig".content = ''
+      [user]
+        email = "${config.sops.placeholder."emails/github"}"
+  '';
+  sops.templates."personal-gitlab.gitconfig".content = ''
+      [user]
+        email = "${config.sops.placeholder."emails/gitlab"}"
+  '';
 }
