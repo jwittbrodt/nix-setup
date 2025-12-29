@@ -29,13 +29,10 @@
   };
   services.swayidle = {
     enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ 1; ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 1; /usr/bin/swaylock";
-      }
-
-    ];
+    events = {
+      "before-sleep" =
+        "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ 1; ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 1; /usr/bin/swaylock";
+    };
     timeouts = [
       {
         timeout = 120;
