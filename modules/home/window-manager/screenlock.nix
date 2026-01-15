@@ -8,7 +8,7 @@
 {
   programs.swaylock = {
     enable = true;
-    package = null; # TODO: see https://github.com/NixOS/nixpkgs/issues/158025
+    package = config.lib.pamShim.replacePam pkgs.swaylock;
     settings = with config.scheme; {
       daemonize = true;
       color = base00;
@@ -31,7 +31,7 @@
     enable = true;
     events = {
       "before-sleep" =
-        "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ 1; ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 1; /usr/bin/swaylock";
+        "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ 1; ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 1; ${pkgs.swaylock}/bin/swaylock";
     };
     timeouts = [
       {
@@ -41,7 +41,7 @@
       }
       {
         timeout = 300;
-        command = "/usr/bin/swaylock";
+        command = "${pkgs.swaylock}/bin/swaylock";
       }
     ];
   };

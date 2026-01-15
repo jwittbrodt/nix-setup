@@ -28,6 +28,8 @@ rec {
     nixGL.packages = null;
   };
 
+  pamShim.enable = true;
+
   sops.age.keyFile = "${home.homeDirectory}/.age/key.txt";
 
   programs.home-manager.enable = true;

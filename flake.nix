@@ -10,6 +10,11 @@
 
     base16.url = "github:SenchoPens/base16.nix";
 
+    pam-shim = {
+      url = "github:Cu3PO42/pam_shim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tt-schemes = {
       url = "github:tinted-theming/schemes";
       flake = false;
@@ -35,6 +40,7 @@
       tt-schemes,
       nix-vscode-extensions,
       sops-nix,
+      pam-shim,
     }:
     {
       nixosConfigurations = {
@@ -60,6 +66,7 @@
         modules = [
           ./modules/home
           sops-nix.homeManagerModules.sops
+          pam-shim.homeModules.default
           {
             sops.defaultSopsFile = ./secrets/secrets.yaml;
             nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
