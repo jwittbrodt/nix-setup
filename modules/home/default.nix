@@ -10,6 +10,7 @@ rec {
     ./dev
     ./fonts.nix
     ./git.nix
+    ./music.nix
     ./ssh-client.nix
     ./window-manager
     ./zsh.nix

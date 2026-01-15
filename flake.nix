@@ -49,7 +49,14 @@
       };
 
       homeConfigurations."jonasw@JonasThinkpad" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfreePredicate =
+            pkg:
+            builtins.elem (nixpkgs.lib.getName pkg) [
+              "spotify"
+            ];
+        };
         modules = [
           ./modules/home
           sops-nix.homeManagerModules.sops
