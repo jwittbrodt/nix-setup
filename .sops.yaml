@@ -1,10 +1,11 @@
 keys:
   - &nixpi1 age1dqhsfnuu0s7aw38vlgkvfh6njm2hh5e34qwjfa8klshdngjauv2scyl45l
   - &jonasw_JonasThinkpad age15mxx02aa0r4x79am7ynn6jx2cr49smmcp3lz5w509hzjf2j3fdms6cy3lz
-  - &jonas_wittbrodt_Lenovo-PW03KNKH age1se7sa4tty9hfdsjv8jhh9ru9hd8kdkyaw8uuenjvyz29fehjaf6qww96f
+  - &jonas_wittbrodt_Lenovo_PW03KNKH age1se7sa4tty9hfdsjv8jhh9ru9hd8kdkyaw8uuenjvyz29fehjaf6qww96fc
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini|sops)$
     key_groups:
       - age:
           - *nixpi1
           - *jonasw_JonasThinkpad
+          - *jonas_wittbrodt_Lenovo_PW03KNKH
