@@ -1,10 +1,13 @@
 {
   base16,
   tt-schemes,
+  pkgs,
+  config,
+  lib,
   ...
 }:
 
-rec {
+{
   imports = [
     ./alacritty.nix
     ./dev
@@ -17,22 +20,38 @@ rec {
     base16.homeManagerModule
   ];
 
-  scheme = "${tt-schemes}/base16/eighties.yaml";
-
-  home.username = "jonasw";
-  home.homeDirectory = "/home/jonasw";
-
-  targets.genericLinux = {
-    enable = true;
-    gpu.enable = true;
-    nixGL.packages = null;
+  options = {
+    my.isWork = lib.mkOption {
+      description = "Whether this host is used for work.";
+      type = lib.types.bool;
+      default = false;
+    };
   };
 
-  pamShim.enable = true;
+  config = {
+    scheme = "${tt-schemes}/base16/eighties.yaml";
 
-  sops.age.keyFile = "${home.homeDirectory}/.age/key.txt";
+    nix = {
+      package = pkgs.nix;
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+    home.homeDirectory = "/home/${config.home.username}";
 
-  programs.home-manager.enable = true;
+    targets.genericLinux = {
+      enable = true;
+      gpu.enable = true;
+      nixGL.packages = null;
+    };
 
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+    pamShim.enable = true;
+
+    sops.age.keyFile = "${config.home.homeDirectory}/.age/key.txt";
+
+    programs.home-manager.enable = true;
+
+    home.stateVersion = "25.05"; # Please read the comment before changing.
+  };
 }
