@@ -17,4 +17,12 @@
 3. Relog to check that it works
 
 ## Apparmor
-For apps that need userns (all electron/chromium/firefox based things) create appropriate profiles in `/etc/apparmor.d` to workaround [this issue](https://github.com/NixOS/nixpkgs/issues/121694)
+For apps that need `userns` (all electron/chromium/firefox based things) create appropriate profiles in `/etc/apparmor.d` to workaround [this issue](https://github.com/NixOS/nixpkgs/issues/121694)
+
+## Remove Snap
+
+1. `snap list` to get all installed snaps
+2. `snap remove --purge` each of them (except `snapd`)
+3. `sudo apt-get remove --purge snapd`
+4. `sudo apt-mark hold snapd` to prevent it from being reinstalled
+5. remove leftover directories found by `sudo find / -type d -name snap`
