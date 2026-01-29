@@ -58,11 +58,15 @@
         let
           pkgs = import nixpkgs {
             system = "x86_64-linux";
-            config.allowUnfreePredicate =
-              pkg:
-              builtins.elem (nixpkgs.lib.getName pkg) [
-                "spotify"
-              ];
+            config = {
+              allowUnfreePredicate =
+                pkg:
+                builtins.elem (nixpkgs.lib.getName pkg) [
+                  "spotify"
+                  "nvidia-x11"
+                ];
+              nvidia.acceptLicense = true;
+            };
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
           extraSpecialArgs = {

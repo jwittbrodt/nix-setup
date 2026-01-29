@@ -1,14 +1,19 @@
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.sway;
+    extraOptions = if config.targets.genericLinux.gpu.nvidia.enable then [ "--unsupported-gpu" ] else [];
+    extraSessionCommands = ''
+      export MOZ_ENABLE_WAYLAND=1
+      export MOZ_DBUS_REMOTE=1
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
