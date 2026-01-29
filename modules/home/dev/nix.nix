@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     nil
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   programs.vscode.profiles.default = {
