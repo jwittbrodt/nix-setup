@@ -26,3 +26,8 @@ For apps that need `userns` (all electron/chromium/firefox based things) create 
 3. `sudo apt-get remove --purge snapd`
 4. `sudo apt-mark hold snapd` to prevent it from being reinstalled
 5. remove leftover directories found by `sudo find / -type d -name snap`
+
+## Remove Gnome
+
+1. FROM A TTY: `sudo apt remove --autoremove --purge ubuntu-desktop-minimal gnome-shell gdm3`
+2. Reboot, should end up in tty1 login, which will autostart sway according to the setup
