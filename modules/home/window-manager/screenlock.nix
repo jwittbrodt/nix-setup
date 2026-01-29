@@ -45,12 +45,17 @@
       }
     ];
   };
-  wayland.windowManager.sway.config.window.commands = [
-    {
-      command = "inhibit_idle fullscreen";
-      criteria = {
-        app_id = "firefox";
+  wayland.windowManager.sway.config.window.commands =
+    let
+      inhibitIdleFullscreen = appId: {
+        command = "inhibit_idle fullscreen";
+        criteria = {
+          app_id = appId;
+        };
       };
-    }
-  ];
+    in
+    map inhibitIdleFullscreen [
+      "firefox"
+      "google-chrome"
+    ];
 }
