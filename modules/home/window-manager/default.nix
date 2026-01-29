@@ -7,6 +7,7 @@
     ./notifications.nix
     ./screenlock.nix
     ./sway.nix
+    ./xdg-portal.nix
   ];
 
   home.packages = with pkgs; [
