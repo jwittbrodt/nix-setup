@@ -1,14 +1,19 @@
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.sway;
+    extraOptions = if config.targets.genericLinux.gpu.nvidia.enable then [ "--unsupported-gpu" ] else [];
+    extraSessionCommands = ''
+      export MOZ_ENABLE_WAYLAND=1
+      export MOZ_DBUS_REMOTE=1
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
@@ -57,13 +62,13 @@
       };
 
       input = {
-        "2:7:SynPS/2_Synaptics_TouchPad" = {
+        "type:touchpad" = {
           tap = "enabled";
           accel_profile = "adaptive";
           pointer_accel = "0.15";
           dwt = "enabled";
         };
-        "1:1:AT_Translated_Set_2_keyboard" = {
+        "type:keyboard" = {
           xkb_layout = "us";
           xkb_variant = "euro";
           xkb_options = "compose:caps,shift:both_capslock";
@@ -121,12 +126,12 @@
       ];
 
       keybindings = lib.mkOptionDefault {
-        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
       };
     };
   };

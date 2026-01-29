@@ -54,29 +54,50 @@
         };
       };
 
-      homeConfigurations."jonasw@JonasThinkpad" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (nixpkgs.lib.getName pkg) [
-              "spotify"
+      homeConfigurations =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config = {
+              allowUnfreePredicate =
+                pkg:
+                builtins.elem (nixpkgs.lib.getName pkg) [
+                  "spotify"
+                  "nvidia-x11"
+                ];
+              nvidia.acceptLicense = true;
+            };
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          extraSpecialArgs = {
+            inherit base16;
+            inherit tt-schemes;
+          };
+        in
+        {
+          "jonas.wittbrodt@Lenovo-PW03KNKH" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs extraSpecialArgs;
+            modules = [
+              ./hosts/Lenovo-PW03KNKH.nix
+              sops-nix.homeManagerModules.sops
+              pam-shim.homeModules.default
+              {
+                sops.defaultSopsFile = ./secrets/secrets.yaml;
+              }
             ];
+          };
+          "jonasw@JonasThinkpad" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs extraSpecialArgs;
+            modules = [
+              ./hosts/JonasThinkpad.nix
+              sops-nix.homeManagerModules.sops
+              pam-shim.homeModules.default
+              {
+                sops.defaultSopsFile = ./secrets/secrets.yaml;
+              }
+            ];
+          };
         };
-        modules = [
-          ./modules/home
-          sops-nix.homeManagerModules.sops
-          pam-shim.homeModules.default
-          {
-            sops.defaultSopsFile = ./secrets/secrets.yaml;
-            nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-          }
-        ];
-        extraSpecialArgs = {
-          inherit base16;
-          inherit tt-schemes;
-        };
-      };
 
       checks = {
         x86_64-linux."home-manager-jonasw@JonasThinkpad" =

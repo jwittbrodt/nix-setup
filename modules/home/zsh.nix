@@ -16,15 +16,6 @@
         DEFAULT_USER=$USER
       '';
     };
-    loginExtra = ''
-      if [ "$(tty)" = "/dev/tty1" ]; then
-        export MOZ_ENABLE_WAYLAND=1
-        export XDG_CURRENT_DESKTOP=sway
-        export MOZ_DBUS_REMOTE=1
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        exec sway
-      fi
-    '';
     envExtra = ''
       export EDITOR='nano'
     '';
