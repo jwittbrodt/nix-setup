@@ -8,7 +8,8 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    extraOptions = if config.targets.genericLinux.gpu.nvidia.enable then [ "--unsupported-gpu" ] else [];
+    extraOptions =
+      if config.targets.genericLinux.gpu.nvidia.enable then [ "--unsupported-gpu" ] else [ ];
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       export MOZ_DBUS_REMOTE=1
@@ -16,6 +17,11 @@
     '';
     config = rec {
       modifier = "Mod4";
+      left = "h";
+      down = "j";
+      up = "k";
+      right = "l";
+
       terminal = "alacritty";
 
       window = {
@@ -126,6 +132,11 @@
       ];
 
       keybindings = lib.mkOptionDefault {
+        "${modifier}+${left}" = "move workspace to output left";
+        "${modifier}+${down}" = "move workspace to output down";
+        "${modifier}+${up}" = "move workspace to output up";
+        "${modifier}+${right}" = "move workspace to output right";
+
         "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
