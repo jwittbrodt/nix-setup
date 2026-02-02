@@ -32,3 +32,4 @@ For apps that need `userns` (all electron/chromium/firefox based things) create 
 1. `sudo apt-mark manual pipewire-pulse pipewire` -> xdg-desktop-portal implementations (which are done via HM) need pipewire and its pulse api
 2. FROM A TTY: `sudo apt remove --autoremove --purge ubuntu-desktop-minimal gnome-shell gdm3 xdg-desktop-portal`
 3. Reboot, should end up in tty1 login, which will autostart sway according to the setup
+4. `sudo apt install uidmap` -> needed by podman
