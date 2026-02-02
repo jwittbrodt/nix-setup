@@ -15,6 +15,7 @@
     ./git.nix
     ./music.nix
     ./ssh-client.nix
+    ./utils.nix
     ./window-manager
     ./zsh.nix
     base16.homeManagerModule

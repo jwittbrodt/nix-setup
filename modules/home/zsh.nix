@@ -9,7 +9,7 @@
     oh-my-zsh = {
       enable = true;
       theme = "agnoster";
-      plugins = [ "git" ];
+      plugins = [ ];
       extraConfig = ''
         HYPHEN_INSENSITIVE="true"
         HIST_STAMPS="dd.mm.yyyy"
