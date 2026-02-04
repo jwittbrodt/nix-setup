@@ -4,5 +4,7 @@
 }:
 
 {
-  home.packages = with pkgs; [ graphicsmagick ];
+  home.packages = with pkgs; [
+    graphicsmagick
+  ];
 }

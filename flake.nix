@@ -64,6 +64,7 @@
                 builtins.elem (nixpkgs.lib.getName pkg) [
                   "spotify"
                   "nvidia-x11"
+                  "idea"
                 ];
               nvidia.acceptLicense = true;
             };
