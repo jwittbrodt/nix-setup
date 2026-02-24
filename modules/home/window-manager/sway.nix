@@ -73,6 +73,7 @@
           accel_profile = "adaptive";
           pointer_accel = "0.15";
           dwt = "enabled";
+          drag_lock = "disabled";
         };
         "type:keyboard" = {
           xkb_layout = "us";
