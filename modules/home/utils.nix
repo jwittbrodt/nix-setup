@@ -8,5 +8,7 @@
     graphicsmagick
     jq
     yq
+    fd
+    ripgrep
   ];
 }
