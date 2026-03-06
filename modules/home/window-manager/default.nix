@@ -13,7 +13,10 @@
   home.packages = with pkgs; [
     wl-clipboard
     pulseaudio
+    pulsemixer
     brightnessctl
+    grim
+    slurp
   ];
 
   programs.zsh.loginExtra = ''
