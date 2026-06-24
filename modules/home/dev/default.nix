@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./agents.nix
     ./cloud.nix
     ./containers.nix
     ./cpp.nix

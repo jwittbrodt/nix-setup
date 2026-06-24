@@ -53,11 +53,11 @@
   sops.secrets."emails/github" = { };
   sops.secrets."emails/gitlab" = { };
   sops.templates."personal-github.gitconfig".content = ''
-      [user]
-        email = "${config.sops.placeholder."emails/github"}"
+    [user]
+      email = "${config.sops.placeholder."emails/github"}"
   '';
   sops.templates."personal-gitlab.gitconfig".content = ''
-      [user]
-        email = "${config.sops.placeholder."emails/gitlab"}"
+    [user]
+      email = "${config.sops.placeholder."emails/gitlab"}"
   '';
 }
