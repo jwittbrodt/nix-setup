@@ -58,6 +58,11 @@
           }
           { block = "sound"; }
           {
+            block = "sound";
+            driver = "pulseaudio";
+            device_kind = "source";
+          }
+          {
             block = "time";
             interval = 60;
           }
