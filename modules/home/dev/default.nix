@@ -11,5 +11,6 @@
     ./nix.nix
     ./terraform.nix
     ./vscode.nix
+    ./zed.nix
   ];
 }
