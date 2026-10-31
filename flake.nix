@@ -8,7 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    base16.url = "github:SenchoPens/base16.nix";
+    base16 = {
+      url = "github:SenchoPens/base16.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     pam-shim = {
       url = "github:Cu3PO42/pam_shim";
@@ -64,7 +67,7 @@
                 builtins.elem (nixpkgs.lib.getName pkg) [
                   "spotify"
                   "nvidia-x11"
-                  "idea"
+                  "intellij-idea"
                 ];
               nvidia.acceptLicense = true;
             };
