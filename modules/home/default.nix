@@ -32,13 +32,23 @@
   config = {
     scheme = "${tt-schemes}/base16/eighties.yaml";
 
+    sops.secrets."tokens/github_public_ro" = { };
+    sops.templates."nix-access-tokens.conf" = {
+      content = ''
+        access-tokens = github.com=${config.sops.placeholder."tokens/github_public_ro"}
+      '';
+    };
     nix = {
       package = pkgs.nix;
       settings.experimental-features = [
         "nix-command"
         "flakes"
       ];
+      extraOptions = ''
+        !include ${config.sops.templates."nix-access-tokens.conf".path}
+      '';
     };
+
     home.homeDirectory = "/home/${config.home.username}";
 
     targets.genericLinux = {
